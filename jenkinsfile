@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from the repository
+                git url: 'https://github.com/adrian-kulathunga/caesers-cipher.git', branch: 'master'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Run the Gradle build
+                sh './gradlew clean build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run the Gradle test task
+                sh './gradlew test'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Archive the test results
+            junit '**/build/test-results/test/*.xml'
+        }
+        success {
+            // Additional actions on success
+            echo 'Build and tests succeeded!'
+        }
+        failure {
+            // Additional actions on failure
+            echo 'Build or tests failed!'
+        }
+    }
+}
