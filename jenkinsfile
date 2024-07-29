@@ -16,6 +16,8 @@ pipeline {
 
         stage('Build') {
             steps {
+                  echo 'Build'
+
                 // Run the Gradle build
                 //sh 'chmod +x gradlew'
                 //sh './gradlew clean build'
@@ -24,6 +26,8 @@ pipeline {
 
         stage('Test') {
             steps {
+                  echo 'tests'
+
                 // Run the Gradle test task
                 //sh './gradlew test'
             }
@@ -32,6 +36,8 @@ pipeline {
 
     post {
         always {
+                  echo 'post'
+
             // Archive the test results
             //junit '**/build/test-results/test/*.xml'
         }
