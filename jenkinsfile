@@ -16,30 +16,30 @@ pipeline {
 
         stage('Build') {
             steps {
-                  echo 'Build'
+                echo 'Build'
 
                 // Run the Gradle build
                 //sh 'chmod +x gradlew'
-                //sh './gradlew clean build'
+                sh './gradlew clean build'
             }
         }
 
         stage('Test') {
             steps {
-                  echo 'tests'
+                echo 'tests'
 
                 // Run the Gradle test task
-                //sh './gradlew test'
+                sh './gradlew test'
             }
         }
     }
 
     post {
         always {
-                  echo 'post'
+            echo 'post'
 
             // Archive the test results
-            //junit '**/build/test-results/test/*.xml'
+            junit '**/build/test-results/test/*.xml'
         }
         success {
             // Additional actions on success
