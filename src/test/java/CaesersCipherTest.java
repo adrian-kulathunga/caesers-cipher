@@ -9,7 +9,7 @@ public class CaesersCipherTest {
 
     @Test
     void testCipheredMessageWithOffsetOf12() {
-        assertEquals("tai mdq kag pauzs fapmk", caesersCipher.cipher("how are you doing today", 12));
+        assertEquals("tai fmdq kag pauzs fapmk", caesersCipher.cipher("how are you doing today", 12));
     }
 
     @Test
